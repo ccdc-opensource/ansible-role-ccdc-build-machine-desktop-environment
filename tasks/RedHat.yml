@@ -34,3 +34,6 @@
     state: started
     enabled: yes
   become: yes
+
+- name: Disable idle screen lock for vagrant
+  command: gsettings set org.gnome.desktop.session idle-delay 0
