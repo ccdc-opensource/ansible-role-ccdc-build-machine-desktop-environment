@@ -1,0 +1,36 @@
+---
+- name: Install desktop environment
+  yum:
+    name:
+      - "@^gnome-desktop-environment"
+      - firefox
+  become: yes
+
+- name: Set vagrant user for autologin
+  ini_file:
+    path: /etc/gdm/custom.conf
+    section: daemon
+    option: AutomaticLogin
+    value: vagrant
+    mode: '0644'
+  become: yes
+
+- name: Enable autologin
+  ini_file:
+    path: /etc/gdm/custom.conf
+    section: daemon
+    option: AutomaticLoginEnable
+    value: 'True'
+    mode: '0644'
+  become: yes
+
+- name: Set GUI boot as default boot target
+  file: path=/etc/systemd/system/default.target src=/lib/systemd/system/graphical.target state=link
+  become: yes
+
+- name: Enable and start GDM
+  systemd:
+    name: gdm
+    state: started
+    enabled: yes
+  become: yes
