@@ -41,5 +41,5 @@
   become: yes
   
 - name: Set the autologon password
-  command: /usr/local/bin/kcpassword "{{ teamcity_build_user_password }}"
+  command: /usr/local/bin/kcpassword "vagrant"
   become: yes
