@@ -1,19 +1,30 @@
 ccdc-desktop-environment
 ========================
 
-A role that installs the standard GNOME desktop environment.
+A role to set up a test-suitable desktop environment. This will set up the following on Linux, macOS and Windows:
+
+  * (CentOS only) Install the GNOME Desktop Environment and make it the default boot environment
+  * Set up automatic login for the `vagrant` user
+  * Disable screen locks and screensavers
 
 Example Playbook
 ----------------
-- hosts: desktops
+
+```yaml
+- hosts: all
   roles:
-      - ccdc-desktop-environment
+      - ccdc-buildmachine-desktop-environment
+```
 
 Example requirements.yml lines for ansible-galaxy
---------------------
-# Install the CSDS
-- src: http://dev.azure/hg/ansible-role-ccdc-desktop-environment
-  name: ccdc-desktop-environment
+-------------------------------------------------
+
+```yaml
+# Set up desktop environment for test machines
+- src: git@ssh.dev.azure.com:v3/ccdc/build-systems/ansible-role-ccdc-buildmachine-desktop-environment
+  scm: git
+  name: ccdc-buildmachine-desktop-environment
+```
 
 License
 -------
