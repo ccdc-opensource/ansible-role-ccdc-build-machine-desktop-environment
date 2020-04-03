@@ -6,3 +6,16 @@
     
 - name: "Enable autologon for vagrant"
   win_command: "C:\\ProgramData\\chocolatey\\bin\\Autologon.exe vagrant . vagrant"
+
+- name: Disable screen saver
+  win_shell: Set-ItemProperty "HKCU:\Control Panel\Desktop" -Name ScreenSaveActive -Value 0 -Type DWord
+
+- name: Disable monitor and standby idle timeout
+  command: powercfg -x -{{ timeout }} 0
+  loop:
+    - monitor-timeout-ac
+    - monitor-timeout-dc
+    - standby-timeout-ac
+    - standby-timeout-dc
+  loop_control:
+    loop_var: timeout

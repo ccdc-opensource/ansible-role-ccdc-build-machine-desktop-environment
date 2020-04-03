@@ -1,0 +1,45 @@
+---
+- name: Disable Sleep
+  command: "{{ item }}"
+  with_items:
+    - systemsetup -setsleep Never
+    - systemsetup -setharddisksleep Never
+    - systemsetup -setcomputersleep Never
+    - systemsetup -setdisplaysleep Never
+  changed_when: false
+  become: true
+
+- name: Additional cleanups for never sleep mode
+  include_role:
+    name: feffi.macos-standby
+  vars:
+    standby_delay: false
+    hibernate_mode: 0
+    remove_sleepimage: true
+
+- name: Ensure homebrew is installed
+  include_role:
+    name: geerlingguy.homebrew
+
+- name: Add xfreebird/utils tap for kcpassword
+  homebrew_tap:
+    name: xfreebird/utils
+    state: present
+
+- name: Add kcpassword utility for autologin
+  homebrew:
+    name: kcpassword
+    state: present
+
+- name: Set autoLoginUser
+  osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: autoLoginUser
+    type: string
+    value: vagrant
+    state: present
+  become: yes
+  
+- name: Set the autologon password
+  command: /usr/local/bin/kcpassword "{{ teamcity_build_user_password }}"
+  become: yes
