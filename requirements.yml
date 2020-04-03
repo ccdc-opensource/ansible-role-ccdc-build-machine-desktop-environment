@@ -1,0 +1,3 @@
+---
+- src: https://github.com/feffi/ansible-macos-standby.git
+  name: feffi.macos-standby
