@@ -11,7 +11,7 @@
   win_shell: Set-ItemProperty "HKCU:\Control Panel\Desktop" -Name ScreenSaveActive -Value 0 -Type DWord
 
 - name: Disable monitor and standby idle timeout
-  command: powercfg -x -{{ timeout }} 0
+  win_command: powercfg -x -{{ timeout }} 0
   loop:
     - monitor-timeout-ac
     - monitor-timeout-dc
