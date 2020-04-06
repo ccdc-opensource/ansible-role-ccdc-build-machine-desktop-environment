@@ -1,4 +1,8 @@
 ---
+- name: Set up package managers for required tools
+  include_role:
+    name: ccdc-package-manager-configuration
+
 - name: Install desktop environment
   yum:
     name:
