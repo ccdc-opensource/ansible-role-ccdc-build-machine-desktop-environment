@@ -46,4 +46,5 @@
 
 - name: Set Europe/London time zone
   timezone:
-    name: London - United Kingdom
+    name: "Europe/London"
+  become: yes
