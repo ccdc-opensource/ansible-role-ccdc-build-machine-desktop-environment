@@ -46,10 +46,8 @@
     key: "{{ option.key }}"
     value: "{{ option.value }}"
   loop:
-    - { 'key': '/org/gnome/desktop/session/idle-delay', 'value': '0' }
     - { 'key': '/org/gnome/desktop/screensaver/lock-enabled', 'value': 'false' }
     - { 'key': '/org/gnome/desktop/screensaver/lock-delay', 'value': '0' }
+    - { 'key': '/org/gnome/desktop/session/idle-delay', 'value': '0' }
   loop_control:
     loop_var: option
-  become: yes
-  become_user: vagrant
