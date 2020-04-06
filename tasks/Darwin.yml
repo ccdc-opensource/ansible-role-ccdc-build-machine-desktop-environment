@@ -43,3 +43,7 @@
 - name: Set the autologon password
   command: /usr/local/bin/kcpassword "vagrant"
   become: yes
+
+- name: Set Europe/London time zone
+  timezone:
+    name: London - United Kingdom
