@@ -1,0 +1,54 @@
+---
+- name: Set vagrant user for autologin
+  ini_file:
+    path: /etc/gdm/custom.conf
+    section: daemon
+    option: AutomaticLogin
+    value: vagrant
+    mode: '0644'
+  become: yes
+
+- name: Enable autologin
+  ini_file:
+    path: /etc/gdm/custom.conf
+    section: daemon
+    option: AutomaticLoginEnable
+    value: 'True'
+    mode: '0644'
+  become: yes
+
+- name: Set GUI boot as default boot target
+  file: path=/etc/systemd/system/default.target src=/lib/systemd/system/graphical.target state=link
+  become: yes
+
+- name: Enable and start GDM
+  systemd:
+    name: gdm
+    state: started
+    enabled: yes
+  become: yes
+
+# The dbus machine ID is generated randomly so we need to read it out to find the session file
+- name: Find dbus machine id
+  slurp:
+    src: /etc/machine-id
+  register: machine_id
+
+# We have to wait for dbus to finish launching before continuing as otherwise
+# trying to use ansible's dconf module will likely run before dbus is ready and fail.
+- name: Wait for dbus to launch
+  wait_for:
+    path: "{{ ansible_env.HOME }}/.dbus/session-bus/{{ machine_id['content'] | b64decode | trim }}-0"
+    timeout: 10
+  when: ansible_os_family == "RedHat"
+
+- name: Disable idle screen lock
+  dconf:
+    key: "{{ option.key }}"
+    value: "{{ option.value }}"
+  loop:
+    - { 'key': '/org/gnome/desktop/screensaver/lock-enabled', 'value': 'false' }
+    - { 'key': '/org/gnome/desktop/screensaver/lock-delay', 'value': 0 }
+    - { 'key': '/org/gnome/desktop/session/idle-delay', 'value': 0 }
+  loop_control:
+    loop_var: option

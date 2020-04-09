@@ -1,0 +1,13 @@
+---
+- name: Install desktop environment
+  apt:
+    name:
+      - ubuntu-desktop
+      - firefox
+      # psutil is required by the dconf module
+      - python3-psutil
+      - python-psutil
+    update_cache: yes
+  become: yes
+
+- include_tasks: Linux.yml
