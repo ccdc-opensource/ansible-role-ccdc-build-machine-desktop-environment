@@ -10,4 +10,11 @@
     update_cache: yes
   become: yes
 
+- name: Link /etc/gdm to /etc/gdm3
+  file:
+    src: /etc/gdm3
+    dest: /etc/gdm
+    state: link
+  become: yes
+
 - include_tasks: Linux.yml
