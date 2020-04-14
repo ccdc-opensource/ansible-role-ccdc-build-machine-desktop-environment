@@ -4,6 +4,7 @@ ccdc-desktop-environment
 A role to set up a test-suitable desktop environment. This will set up the following on Linux, macOS and Windows:
 
   * (CentOS only) Install the GNOME Desktop Environment and make it the default boot environment
+  * (Ubuntu only) Install the Ubuntu desktop environment and make it the default boot environment
   * Set up automatic login for the `vagrant` user
   * Disable screen locks and screensavers
 
