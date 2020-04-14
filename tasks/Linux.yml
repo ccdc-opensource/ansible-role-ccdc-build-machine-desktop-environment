@@ -1,7 +1,7 @@
 ---
 - name: Set vagrant user for autologin
   ini_file:
-    path: /etc/gdm/custom.conf
+    path: "{{ gdm_config_file }}"
     section: daemon
     option: AutomaticLogin
     value: vagrant
@@ -10,7 +10,7 @@
 
 - name: Enable autologin
   ini_file:
-    path: /etc/gdm/custom.conf
+    path: "{{ gdm_config_file }}"
     section: daemon
     option: AutomaticLoginEnable
     value: 'True'
@@ -34,8 +34,8 @@
     src: /etc/machine-id
   register: machine_id
 
-# We have to wait for dbus to finish launching before continuing as otherwise
-# trying to use ansible's dconf module will likely run before dbus is ready and fail.
+# On CentOS we have to wait for dbus to finish launching before continuing as otherwise
+# trying to use ansible's dconf module next will likely run before dbus is ready and fail.
 - name: Wait for dbus to launch
   wait_for:
     path: "{{ ansible_env.HOME }}/.dbus/session-bus/{{ machine_id['content'] | b64decode | trim }}-0"

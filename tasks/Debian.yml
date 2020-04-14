@@ -10,13 +10,4 @@
     update_cache: yes
   become: yes
 
-# Ubuntu uses /etc/gdm3 rather than /etc/gdm, so in order to not have to
-# split autologin setup between CentOS and Ubuntu we just symlink the two
-- name: Link /etc/gdm to /etc/gdm3
-  file:
-    src: /etc/gdm3
-    dest: /etc/gdm
-    state: link
-  become: yes
-
 - include_tasks: Linux.yml
