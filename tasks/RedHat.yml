@@ -10,6 +10,8 @@
       - firefox
       # This is required for the dconf module to disable screen locking
       - python2-psutil
+      # DKMS will stop system updates from breaking VM guest extensions
+      - dkms
   become: yes
 
 - include_tasks: Linux.yml
