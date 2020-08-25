@@ -45,13 +45,19 @@
 - name: Get dbus pid
   command: grep "DBUS_SESSION_BUS_PID=" {{ ansible_env.HOME }}/.dbus/session-bus/{{ machine_id['content'] | b64decode | trim }}-0
   register: dbuspid
-  when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == '7'
 
 - name: Wait for dbus process to exist
   wait_for:
     path: /proc/{{ dbuspid['stdout'] | regex_replace('DBUS_SESSION_BUS_PID=', '') }}/status
     state: present
-  when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == '7'
+
+- name: Wait for dbus
+  wait_for:
+    path: /run/user/1000/bus
+    state: present
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == '8'
 
 - name: Disable idle screen lock
   dconf:
