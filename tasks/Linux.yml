@@ -36,24 +36,24 @@
 
 # On CentOS we have to wait for dbus to finish launching before continuing as otherwise
 # trying to use ansible's dconf module next will likely run before dbus is ready and fail.
-- name: Wait for dbus to launch
+- name: Wait for dbus to launch on RHEL7
   wait_for:
     path: "{{ ansible_env.HOME }}/.dbus/session-bus/{{ machine_id['content'] | b64decode | trim }}-0"
     timeout: 10
-  when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == '7'
 
-- name: Get dbus pid
+- name: Get dbus pid on RHEL7
   command: grep "DBUS_SESSION_BUS_PID=" {{ ansible_env.HOME }}/.dbus/session-bus/{{ machine_id['content'] | b64decode | trim }}-0
   register: dbuspid
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == '7'
 
-- name: Wait for dbus process to exist
+- name: Wait for dbus process to exist on RHEL7
   wait_for:
     path: /proc/{{ dbuspid['stdout'] | regex_replace('DBUS_SESSION_BUS_PID=', '') }}/status
     state: present
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == '7'
 
-- name: Wait for dbus
+- name: Wait for dbus on RHEL8
   wait_for:
     path: /run/user/1000/bus
     state: present
