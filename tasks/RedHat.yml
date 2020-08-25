@@ -4,14 +4,11 @@
     name: ccdc-package-manager-configuration
 
 - name: Install desktop environment
-  yum:
-    name:
-      - "@^gnome-desktop-environment"
-      - firefox
-      # This is required for the dconf module to disable screen locking
-      - python2-psutil
-      # DKMS will stop system updates from breaking VM guest extensions
-      - dkms
+  package:
+    name: "{{ package }}"
+  loop: "{{ desktop_packages }}"
+  loop_control:
+    loop_var: package
   become: yes
 
 - include_tasks: Linux.yml
