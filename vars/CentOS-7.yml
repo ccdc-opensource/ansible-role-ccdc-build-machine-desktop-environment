@@ -1,0 +1,11 @@
+---
+gdm_config_file: /etc/gdm/custom.conf
+
+desktop_packages: [
+  "@^gnome-desktop-environment",
+  "firefox",
+  # psutil is required for the dconf module to disable screen locking
+  "python2-psutil",
+  # DKMS will stop system updates from breaking VM guest extensions
+  "dkms"
+  ]
