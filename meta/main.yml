@@ -1,9 +1,9 @@
 galaxy_info:
-  author: Claudio Bantaloukas
+  role_name: build_machine_desktop_environment
+  author: rockdreamer
   description: A role to install the CSDS
-  company: CCDC
-  issue_tracker_url: https://jira.ccdc.cam.ac.uk
-  license: internal distribution only
+  company: The Cambridge Crystallographic Data Centre
+  license: "license (BSD, MIT)"
   min_ansible_version: 2.4
 
   # Provide a list of supported platforms, and for each platform a list of versions.

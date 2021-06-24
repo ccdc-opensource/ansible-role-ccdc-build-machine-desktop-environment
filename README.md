@@ -1,4 +1,4 @@
-ccdc-desktop-environment
+ccdc.build_machine_desktop_environment
 ========================
 
 A role to set up a test-suitable desktop environment. This will set up the following on Linux, macOS and Windows:
@@ -14,7 +14,7 @@ Example Playbook
 ```yaml
 - hosts: all
   roles:
-      - ccdc-buildmachine-desktop-environment
+      - ccdc.build_machine_desktop_environment
 ```
 
 Example requirements.yml lines for ansible-galaxy
@@ -22,9 +22,9 @@ Example requirements.yml lines for ansible-galaxy
 
 ```yaml
 # Set up desktop environment for test machines
-- src: git@ssh.dev.azure.com:v3/ccdc/build-systems/ansible-role-ccdc-buildmachine-desktop-environment
+- src: git@github.com:ccdc-opensource/ansible-role-ccdc-build-machine-desktop-environment.git
   scm: git
-  name: ccdc-buildmachine-desktop-environment
+  name: ccdc.build_machine_desktop_environment
 ```
 
 License
