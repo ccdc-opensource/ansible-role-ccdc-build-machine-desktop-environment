@@ -9,6 +9,6 @@
   loop: "{{ desktop_packages }}"
   loop_control:
     loop_var: package
-  become: yes
+  become: true
 
 - include_tasks: Linux.yml

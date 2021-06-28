@@ -3,7 +3,7 @@
   win_chocolatey:
     name: autologon
     state: present
-    
+
 - name: "Enable autologon for vagrant"
   win_command: "C:\\ProgramData\\chocolatey\\bin\\Autologon.exe vagrant . vagrant"
 

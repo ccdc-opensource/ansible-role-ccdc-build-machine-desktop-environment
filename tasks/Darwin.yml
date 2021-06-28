@@ -38,13 +38,13 @@
     type: string
     value: vagrant
     state: present
-  become: yes
-  
-- name: Set the autologon password
+  become: true
+
+- name: Set the autologon password  # noqa: no-changed-when
   command: /usr/local/bin/kcpassword "vagrant"
-  become: yes
+  become: true
 
 - name: Set Europe/London time zone
   timezone:
     name: "Europe/London"
-  become: yes
+  become: true

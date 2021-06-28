@@ -8,6 +8,6 @@
       - python3-psutil
       - python-psutil
     update_cache: yes
-  become: yes
+  become: true
 
 - include_tasks: Linux.yml
