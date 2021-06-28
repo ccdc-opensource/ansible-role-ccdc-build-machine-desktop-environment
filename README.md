@@ -29,5 +29,5 @@ Example requirements.yml lines for ansible-galaxy
 
 License
 -------
-CCDC Internal. Do not distribute.
+MIT / BSD
 
