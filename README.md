@@ -22,9 +22,7 @@ Example requirements.yml lines for ansible-galaxy
 
 ```yaml
 # Set up desktop environment for test machines
-- src: git@github.com:ccdc-opensource/ansible-role-ccdc-build-machine-desktop-environment.git
-  scm: git
-  name: ccdc.build_machine_desktop_environment
+- name: ccdc.build_machine_desktop_environment
 ```
 
 License
