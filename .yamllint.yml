@@ -11,7 +11,6 @@ extends: default
 
 # Rules documentation: http://yamllint.readthedocs.io/en/latest/rules.html
 rules:
-
   braces:
     # Defaults
     # min-spaces-inside: 0
@@ -36,10 +35,10 @@ rules:
     # Defaults
     # level: warning
     # require-starting-space: true
-    # min-spaces-from-content: 2
 
     # Disabling to allow for code comment blocks and #!/usr/bin/ansible-playbook
     require-starting-space: false
+    min-spaces-from-content: 1
 
   indentation:
     # Defaults

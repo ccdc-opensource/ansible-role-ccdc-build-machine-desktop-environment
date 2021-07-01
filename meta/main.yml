@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   role_name: build_machine_desktop_environment
+  namespace: ccdc
   author: rockdreamer
   description: Prepare the desktop for building and testing the CSD Portfolio
   company: The Cambridge Crystallographic Data Centre

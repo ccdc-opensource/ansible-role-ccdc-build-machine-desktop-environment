@@ -4,5 +4,4 @@
 - src: https://github.com/feffi/ansible-macos-defaults.git
   name: feffi.macos-defaults
 - src: geerlingguy.homebrew
-- src: https://github.com/ccdc-opensource/ansible-role-ccdc-package-manager-configuration.git
-  name: ccdc.package_manager_configuration
+- name: ccdc.package_manager_configuration

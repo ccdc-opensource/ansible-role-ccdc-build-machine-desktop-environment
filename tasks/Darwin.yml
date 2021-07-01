@@ -40,7 +40,7 @@
     state: present
   become: true
 
-- name: Set the autologon password  # noqa: no-changed-when
+- name: Set the autologon password # noqa: no-changed-when
   command: /usr/local/bin/kcpassword "vagrant"
   become: true
 
