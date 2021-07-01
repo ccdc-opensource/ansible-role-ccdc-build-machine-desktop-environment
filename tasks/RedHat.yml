@@ -1,7 +1,7 @@
 ---
 - name: Set up package managers for required tools
   include_role:
-    name: ccdc-package-manager-configuration
+    name: ccdc.package_manager_configuration
 
 - name: Install desktop environment
   package:
@@ -9,6 +9,6 @@
   loop: "{{ desktop_packages }}"
   loop_control:
     loop_var: package
-  become: yes
+  become: true
 
 - include_tasks: Linux.yml

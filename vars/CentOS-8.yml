@@ -1,11 +1,10 @@
 ---
 gdm_config_file: /etc/gdm/custom.conf
 
-desktop_packages: [
-  "@Workstation",
-  "firefox",
+desktop_packages:
+  - "@Workstation"
+  - "firefox"
   # This is required for the dconf module to disable screen locking
-  "python3-psutil",
+  - "python3-psutil"
   # DKMS will stop system updates from breaking VM guest extensions
-  "dkms"
-  ]
+  - "dkms"
