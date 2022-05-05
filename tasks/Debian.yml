@@ -6,7 +6,7 @@
       - firefox
       # psutil is required by the dconf module
       - python3-psutil
-      - python-psutil
+      # - python-psutil
     state: present
     update_cache: yes
   become: true
