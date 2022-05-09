@@ -1,6 +1,6 @@
 ---
 - name: Install desktop environment
-  apt:
+  ansible.builtin.apt:
     name:
       - ubuntu-desktop
       - firefox
@@ -11,4 +11,4 @@
     update_cache: yes
   become: true
 
-- include_tasks: Linux.yml
+- ansible.builtin.include_tasks: Linux.yml

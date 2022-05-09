@@ -1,6 +1,6 @@
 ---
 - name: Disable Sleep
-  command: "{{ item }}"
+  ansible.builtin.command: "{{ item }}"
   with_items:
     - systemsetup -setsleep Never
     - systemsetup -setharddisksleep Never
@@ -10,7 +10,7 @@
   become: true
 
 - name: Additional cleanups for never sleep mode
-  include_role:
+  ansible.builtin.include_role:
     name: feffi.macos-standby
   vars:
     standby_delay: false
@@ -18,21 +18,21 @@
     remove_sleepimage: true
 
 - name: Ensure homebrew is installed
-  include_role:
+  ansible.builtin.include_role:
     name: geerlingguy.homebrew
 
 - name: Add xfreebird/utils tap for kcpassword
-  homebrew_tap:
+  community.general.homebrew_tap:
     name: xfreebird/utils
     state: present
 
 - name: Add kcpassword utility for autologin
-  homebrew:
+  community.general.homebrew:
     name: kcpassword
     state: present
 
 - name: Set autoLoginUser
-  osx_defaults:
+  community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.loginwindow
     key: autoLoginUser
     type: string
@@ -41,10 +41,10 @@
   become: true
 
 - name: Set the autologon password # noqa: no-changed-when
-  command: /usr/local/bin/kcpassword "vagrant"
+  ansible.builtin.command: /usr/local/bin/kcpassword "vagrant"
   become: true
 
 - name: Set Europe/London time zone
-  timezone:
+  community.generaltimezone:
     name: "Europe/London"
   become: true
