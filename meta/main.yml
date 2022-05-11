@@ -16,10 +16,17 @@ galaxy_info:
       versions:
         - 7
         - 8
+    - name: Ubuntu
+      versions:
+        - 18.04
+        - 20.04
+        - 22.04
     - name: MacOSX
       versions:
         - 10.14
         - 10.15
+        - 11
+        - 12
   galaxy_tags:
     - ccdc
     - systemsteam
