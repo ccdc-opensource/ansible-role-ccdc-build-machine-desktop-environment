@@ -3,6 +3,7 @@
   chocolatey.chocolatey.win_chocolatey:
     name: autologon
     state: present
+  become: true
 
 - name: "Enable autologon for vagrant"
   ansible.windows.win_command: "C:\\ProgramData\\chocolatey\\bin\\Autologon.exe vagrant . vagrant"

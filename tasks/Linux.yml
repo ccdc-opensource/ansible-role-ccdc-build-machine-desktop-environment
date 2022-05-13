@@ -28,7 +28,7 @@
   ansible.builtin.systemd:
     name: gdm
     state: started
-    enabled: yes
+    enabled: true
   become: true
 
 # The dbus machine ID is generated randomly so we need to read it out to find the session file

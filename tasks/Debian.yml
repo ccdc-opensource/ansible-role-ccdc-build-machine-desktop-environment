@@ -4,11 +4,10 @@
     name:
       - ubuntu-desktop
       - firefox
-      # psutil is required by the dconf module
+      # psutil is required by ansible's dconf module
       - python3-psutil
-      # - python-psutil
     state: present
-    update_cache: yes
+    update_cache: true
   become: true
 
 - ansible.builtin.include_tasks: Linux.yml
