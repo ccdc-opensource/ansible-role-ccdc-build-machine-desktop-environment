@@ -11,4 +11,5 @@
     loop_var: package
   become: true
 
-- ansible.builtin.include_tasks: Linux.yml
+- name: Run common Linux setup
+  ansible.builtin.include_tasks: Linux.yml
