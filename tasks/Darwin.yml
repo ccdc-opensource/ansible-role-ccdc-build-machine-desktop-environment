@@ -45,6 +45,6 @@
   become: true
 
 - name: Set Europe/London time zone
-  community.generaltimezone:
+  community.general.timezone:
     name: "Europe/London"
   become: true
