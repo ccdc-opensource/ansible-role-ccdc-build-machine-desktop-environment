@@ -10,4 +10,5 @@
     update_cache: true
   become: true
 
-- ansible.builtin.include_tasks: Linux.yml
+- name: Run common Linux setup
+  ansible.builtin.include_tasks: Linux.yml
