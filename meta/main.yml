@@ -14,8 +14,9 @@ galaxy_info:
         - all
     - name: EL
       versions:
-        - 7
-        - 8
+        - "7"
+        - "8"
+        - "9"
     - name: Ubuntu
       versions:
         - bionic
@@ -23,8 +24,8 @@ galaxy_info:
         - jammy
     - name: MacOSX
       versions:
-        - 10.14
-        - 10.15
+        - "10.14"
+        - "10.15"
     - name: macOS
       versions:
         - Big-Sur
