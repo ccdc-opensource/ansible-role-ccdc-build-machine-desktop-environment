@@ -6,7 +6,7 @@ galaxy_info:
   description: Prepare the desktop for building and testing the CSD Portfolio
   company: The Cambridge Crystallographic Data Centre
   license: "license (BSD, MIT)"
-  min_ansible_version: 2.7
+  min_ansible_version: "2.7"
 
   platforms:
     - name: Windows
