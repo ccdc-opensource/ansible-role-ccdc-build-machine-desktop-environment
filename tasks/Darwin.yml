@@ -13,9 +13,9 @@
   ansible.builtin.include_role:
     name: feffi.macos-standby
   vars:
-    standby_delay: false
-    hibernate_mode: 0
-    remove_sleepimage: true
+    standby_delay: false  # noqa: var-naming[no-role-prefix]
+    hibernate_mode: 0  # noqa: var-naming[no-role-prefix]
+    remove_sleepimage: true  # noqa: var-naming[no-role-prefix]
 
 - name: Ensure homebrew is installed
   ansible.builtin.include_role:
