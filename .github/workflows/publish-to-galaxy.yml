@@ -1,0 +1,13 @@
+name: Publish release to Ansible Galaxy
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  ansible-galaxy-import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: 0x022b/galaxy-role-import-action@v1.0.0
+        with:
+          galaxy_api_key: ${{ secrets.CCDC_ANSIBLE_GALAXY_API_KEY }}
