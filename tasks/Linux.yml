@@ -45,7 +45,7 @@
     timeout: 10
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == '7'
 
-- name: Get dbus pid on RHEL7
+- name: Get dbus pid on RHEL7  # noqa: no-changed-when
   ansible.builtin.command: grep "DBUS_SESSION_BUS_PID=" {{ ansible_env.HOME }}/.dbus/session-bus/{{ machine_id['content'] | b64decode | trim }}-0
   register: dbuspid
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == '7'
