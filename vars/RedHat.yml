@@ -6,5 +6,7 @@ desktop_packages:
   - "firefox"
   # This is required for the dconf module to disable screen locking
   - "python3-psutil"
+  # EPEL is required for dkms on RedHat >=7
+  - "epel-release"
   # DKMS will stop system updates from breaking VM guest extensions
   - "dkms"
