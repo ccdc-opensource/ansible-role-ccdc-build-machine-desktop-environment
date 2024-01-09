@@ -19,7 +19,7 @@
 
 - name: Ensure homebrew is installed
   ansible.builtin.include_role:
-    name: geerlingguy.homebrew
+    name: geerlingguy.mac.homebrew
 
 - name: Add xfreebird/utils tap for kcpassword
   community.general.homebrew_tap:
