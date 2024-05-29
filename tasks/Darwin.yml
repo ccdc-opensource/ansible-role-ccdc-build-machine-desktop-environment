@@ -10,7 +10,7 @@
   become: true
 
 - name: Never Sleep Mode
-  command: "{{ item }}"
+  ansible.builtin.command: "{{ item }}"
   with_items:
     - pmset -a standbydelay 0
     - pmset -a displaysleep 0
