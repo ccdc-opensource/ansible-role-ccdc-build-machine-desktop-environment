@@ -25,7 +25,7 @@
       - name: xfreebird/utils
     homebrew_installed_packages:
       - xfreebird/utils/kcpassword
-  # become: true
+  become: true
 
 # - name: Add kcpassword utility for autologin
 #   community.general.homebrew:
