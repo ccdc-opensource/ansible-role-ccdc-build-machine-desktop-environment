@@ -25,11 +25,13 @@
       - name: xfreebird/utils
     homebrew_installed_packages:
       - xfreebird/utils/kcpassword
+  become: true
 
 - name: Add kcpassword utility for autologin
   community.general.homebrew:
     name: kcpassword
     state: present
+  become: true
 
 - name: Set autoLoginUser
   community.general.osx_defaults:
@@ -41,7 +43,10 @@
   become: true
 
 - name: Set the autologon password # noqa: no-changed-when
-  ansible.builtin.command: /usr/local/bin/kcpassword "vagrant"
+  ansible.builtin.command:
+    cmd: kcpassword vagrant
+  environment:
+    PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
   become: true
 
 - name: Set Europe/London time zone
