@@ -48,6 +48,7 @@
     value: vagrant
     state: present
   become: true
+  ignore_errors: true
 
 - name: Set the autologon password for vagrant # noqa: no-changed-when
   when: vagrant_user.rc == 0
@@ -56,6 +57,7 @@
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
   become: true
+  ignore_errors: true
 
 - name: Check if ec2-user user exists
   ansible.builtin.command:
