@@ -33,7 +33,14 @@
 #     state: present
 #   become: true
 
-- name: Set autoLoginUser
+- name: Check if vagrant user exists
+  ansible.builtin.command:
+    cmd: id -u vagrant
+  register: vagrant_user
+  ignore_errors: true
+
+- name: Set autoLoginUser for vagrant
+  when: vagrant_user.rc == 0
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.loginwindow
     key: autoLoginUser
@@ -42,9 +49,34 @@
     state: present
   become: true
 
-- name: Set the autologon password # noqa: no-changed-when
+- name: Set the autologon password for vagrant # noqa: no-changed-when
+  when: vagrant_user.rc == 0
   ansible.builtin.command:
     cmd: kcpassword vagrant
+  environment:
+    PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
+  become: true
+
+- name: Check if ec2-user user exists
+  ansible.builtin.command:
+    cmd: id -u ec2-user
+  register: ec2_user
+  ignore_errors: true
+
+- name: Set autoLoginUser for ec2-user
+  when: ec2_user.rc == 0
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: autoLoginUser
+    type: string
+    value: ec2-user
+    state: present
+  become: true
+
+- name: Set the autologon password for ec2-user # noqa: no-changed-when
+  when: ec2_user.rc == 0
+  ansible.builtin.command:
+    cmd: kcpassword ec2-user
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
   become: true
