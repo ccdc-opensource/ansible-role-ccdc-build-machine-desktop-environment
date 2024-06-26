@@ -1,7 +1,14 @@
 ---
-- name: Disable Sleep
+- name: Never Sleep Mode
   ansible.builtin.command: "{{ item }}"
   with_items:
+    - pmset -a standbydelay 0
+    - pmset -a displaysleep 0
+    - pmset -a disablesleep 1
+    - pmset -a disksleep 0
+    - pmset -a hibernatemode 0
+    - pmset disablesleep 1
+    #  Not sure the stuff below works
     - systemsetup -setsleep Never
     - systemsetup -setharddisksleep Never
     - systemsetup -setcomputersleep Never
@@ -9,27 +16,22 @@
   changed_when: false
   become: true
 
-- name: Additional cleanups for never sleep mode
-  ansible.builtin.include_role:
-    name: feffi.macos-standby
-  vars:
-    standby_delay: false  # noqa: var-naming[no-role-prefix]
-    hibernate_mode: 0  # noqa: var-naming[no-role-prefix]
-    remove_sleepimage: true  # noqa: var-naming[no-role-prefix]
-
-- name: Ensure homebrew is installed
+- name: Install Homebrew + kcpassword
   ansible.builtin.include_role:
     name: geerlingguy.mac.homebrew
+  vars:
+    # This is overwritten by our group_vars (cpp.build-machines)
+    homebrew_taps:
+      - name: xfreebird/utils
+    homebrew_installed_packages:
+      - xfreebird/utils/kcpassword
+  when: not cpp_buildmachine
 
-- name: Add xfreebird/utils tap for kcpassword
-  community.general.homebrew_tap:
-    name: xfreebird/utils
-    state: present
-
-- name: Add kcpassword utility for autologin
-  community.general.homebrew:
-    name: kcpassword
-    state: present
+# - name: Add kcpassword utility for autologin
+#   community.general.homebrew:
+#     name: kcpassword
+#     state: present
+#   become: true
 
 - name: Set autoLoginUser
   community.general.osx_defaults:
@@ -41,7 +43,10 @@
   become: true
 
 - name: Set the autologon password # noqa: no-changed-when
-  ansible.builtin.command: /usr/local/bin/kcpassword "vagrant"
+  ansible.builtin.command:
+    cmd: kcpassword vagrant
+  environment:
+    PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
   become: true
 
 - name: Set Europe/London time zone
