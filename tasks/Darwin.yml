@@ -34,7 +34,6 @@
 #   become: true
 
 - name: Set autoLoginUser for vagrant
-  when: vagrant_user.rc == 0
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.loginwindow
     key: autoLoginUser
@@ -42,16 +41,13 @@
     value: "{{ current_user }}"
     state: present
   become: true
-  ignore_errors: true
 
 - name: Set the autologon password for vagrant # noqa: no-changed-when
-  when: vagrant_user.rc == 0
   ansible.builtin.command:
     cmd: kcpassword "{{ current_user }}"
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
   become: true
-  ignore_errors: true
 
 - name: Set Europe/London time zone
   community.general.timezone:
