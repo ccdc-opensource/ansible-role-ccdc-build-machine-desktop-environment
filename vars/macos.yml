@@ -2,7 +2,7 @@
 terraform_ostype: "macos"
 ansible_ssh_transfer_method: scp
 # ansible_python_interpreter: /usr/local/bin/python3
-homebrew_user: "{{ current_user }}"
+homebrew_user: "{{ ansible_user }}"
 homebrew_taps:
   - name: xfreebird/utils
   - name: xcodesorg/made
