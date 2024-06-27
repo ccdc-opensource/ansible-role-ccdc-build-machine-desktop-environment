@@ -38,13 +38,13 @@
     domain: /Library/Preferences/com.apple.loginwindow
     key: autoLoginUser
     type: string
-    value: "{{ current_user }}"
+    value: "{{ ansible_user }}"
     state: present
   become: true
 
 - name: Set the autologon password for current user # noqa: no-changed-when
   ansible.builtin.command:
-    cmd: kcpassword "{{ current_user }}"
+    cmd: kcpassword "{{ ansible_user }}"
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
   become: true
