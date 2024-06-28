@@ -2,7 +2,7 @@
 - name: Install desktop environment
   ansible.builtin.apt:
     name:
-      - ubuntu-desktop-minmal
+      - ubuntu-desktop-minimal
       - firefox
       # psutil is required by ansible's dconf module
       - python3-psutil
