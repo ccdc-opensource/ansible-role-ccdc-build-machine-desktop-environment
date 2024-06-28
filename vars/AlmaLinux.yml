@@ -1,3 +1,4 @@
+---
 gdm_config_file: /etc/gdm/custom.conf
 
 desktop_packages:
