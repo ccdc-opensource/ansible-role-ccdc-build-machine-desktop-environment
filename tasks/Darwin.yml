@@ -51,4 +51,13 @@
 - name: Set Europe/London time zone
   community.general.timezone:
     name: "Europe/London"
+  register: timezone_result
   become: true
+
+- name: Debug timezone
+  debug:
+    var: timezone_result
+
+- name: Wait for 5 seconds
+  wait_for:
+    timeout: 5
