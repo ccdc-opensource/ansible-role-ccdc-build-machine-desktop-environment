@@ -33,18 +33,18 @@
 #     state: present
 #   become: true
 
-- name: Set autoLoginUser
+- name: Set autoLoginUser for current user
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.loginwindow
     key: autoLoginUser
     type: string
-    value: vagrant
+    value: "{{ ansible_env.USER }}"
     state: present
   become: true
 
-- name: Set the autologon password # noqa: no-changed-when
+- name: Set the autologon password for current user # noqa: no-changed-when
   ansible.builtin.command:
-    cmd: kcpassword vagrant
+    cmd: kcpassword "{{ ansible_env.USER }}"
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
   become: true
