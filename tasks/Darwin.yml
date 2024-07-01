@@ -61,3 +61,4 @@
 - name: Wait for 5 seconds
   wait_for:
     timeout: 5
+  ignore_errors: yes
