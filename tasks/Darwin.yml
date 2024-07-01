@@ -25,7 +25,6 @@
       - name: xfreebird/utils
     homebrew_installed_packages:
       - xfreebird/utils/kcpassword
-  when: not cpp_buildmachine
 
 # - name: Add kcpassword utility for autologin
 #   community.general.homebrew:
