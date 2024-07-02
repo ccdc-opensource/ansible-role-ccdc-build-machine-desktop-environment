@@ -22,7 +22,11 @@ jobs:
       - name: Modified files
         id: file-changes
         run: |
-          echo "changed-files=$(git diff --name-only -r origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF} | grep '\.py' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          echo \
+              "changed-files=$(git diff --name-only -r origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF} \
+              | grep '\.py' \
+              | tr '\n' ' ')" \
+          >> $GITHUB_OUTPUT
 
       - name: Check GitHub event type to determine reporter type
         run: |
@@ -33,7 +37,7 @@ jobs:
           fi
 
       - name: Set up Python environment
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python_version }}
 
@@ -41,7 +45,7 @@ jobs:
         uses: reviewdog/action-flake8@v3
         with:
           fail_on_error: false
-          filter_mode: diff_context
+          filter_mode: added
           level: error
           flake8_args: ${{ steps.file-changes.outputs.changed-files }}
           reporter: ${{ env.REVIEWDOG_REPORTER }}

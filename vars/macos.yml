@@ -1,0 +1,36 @@
+---
+terraform_ostype: "macos"
+ansible_ssh_transfer_method: scp
+# ansible_python_interpreter: /usr/local/bin/python3
+homebrew_user: "{{ ansible_user }}"
+homebrew_taps:
+  - name: xfreebird/utils
+  - name: xcodesorg/made
+current_user: "{{ lookup('env','USER') }}"
+
+homebrew_installed_packages:
+  - kcpassword
+  - python@3
+  - git
+  - svn
+  - xz
+  - wget
+  - jq
+  - diffutils
+  - graphviz
+  - jfrog-cli
+  - pyenv
+  - conan@1
+  - mariadb
+  - tcl-tk
+  - libomp
+  - aria2
+  - xcodesorg/made/xcodes
+  - htop
+  - mc
+  - ncdu
+  - dockutil
+  - p7zip
+  - zstd
+  - curl
+  - openjdk@17
