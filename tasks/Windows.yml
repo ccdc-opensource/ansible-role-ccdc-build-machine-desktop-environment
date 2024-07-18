@@ -5,8 +5,8 @@
     state: present
   become: true
 
-- name: "Enable autologon for vagrant"
-  ansible.windows.win_command: "C:\\ProgramData\\chocolatey\\bin\\Autologon.exe vagrant . {{ windows_ansible_password }}"
+- name: Enable autologon for vagrant
+  ansible.windows.win_command: powershell.exe Start-Process -FilePath "C:\\ProgramData\\chocolatey\\bin\\Autologon.exe" -ArgumentList '"/accepteula" vagrant . {{ windows_autologin_password }}'
 
 - name: Disable screen saver
   ansible.windows.win_shell: Set-ItemProperty "HKCU:\Control Panel\Desktop" -Name ScreenSaveActive -Value 0 -Type DWord
