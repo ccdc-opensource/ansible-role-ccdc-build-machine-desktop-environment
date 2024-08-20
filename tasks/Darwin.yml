@@ -16,6 +16,16 @@
   changed_when: false
   become: true
 
+- name: Install Homebrew + kcpassword
+  ansible.builtin.include_role:
+    name: geerlingguy.mac.homebrew
+  vars:
+    # This is overwritten by our group_vars (cpp.build-machines)
+    homebrew_taps:
+      - name: xfreebird/utils
+    homebrew_installed_packages:
+      - xfreebird/utils/kcpassword
+
 - name: Set autoLoginUser for current user
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.loginwindow
