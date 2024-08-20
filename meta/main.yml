@@ -39,3 +39,10 @@ galaxy_info:
 dependencies:
   - role: ccdc.package_manager_configuration
   - role: geerlingguy.mac.homebrew
+    vars:
+      # This is overwritten by our group_vars (cpp.build-machines)
+      homebrew_taps:
+        - name: xfreebird/utils
+      homebrew_installed_packages:
+        - xfreebird/utils/kcpassword
+
