@@ -36,4 +36,5 @@ galaxy_info:
     - desktop
     - integrationtesting
 
-dependencies: []
+dependencies:
+  - role: ccdc.package_manager_configuration

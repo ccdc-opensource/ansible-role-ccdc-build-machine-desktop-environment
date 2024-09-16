@@ -26,12 +26,6 @@
     homebrew_installed_packages:
       - xfreebird/utils/kcpassword
 
-# - name: Add kcpassword utility for autologin
-#   community.general.homebrew:
-#     name: kcpassword
-#     state: present
-#   become: true
-
 - name: Set autoLoginUser for current user
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.loginwindow

@@ -1,8 +1,4 @@
 ---
-- name: Set up package managers for required tools
-  ansible.builtin.include_role:
-    name: ccdc.package_manager_configuration
-
 - name: Install desktop environment
   ansible.builtin.package:
     name: "{{ package }}"
