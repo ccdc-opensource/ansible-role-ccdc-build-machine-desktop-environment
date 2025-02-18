@@ -24,7 +24,8 @@
     homebrew_taps:
       - name: xfreebird/utils
     homebrew_installed_packages:
-      - xfreebird/utils/kcpassword
+      - name: kcpassword
+        tap: xfreebird/utils
 
 - name: Set autoLoginUser for current user
   community.general.osx_defaults:
