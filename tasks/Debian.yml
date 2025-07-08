@@ -7,7 +7,6 @@
       # psutil is required by ansible's dconf module
       - python3-psutil
     state: present
-    update_cache: true
   become: true
 
 - name: Run common Linux setup
