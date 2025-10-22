@@ -10,3 +10,5 @@ desktop_packages:
   - "python3-psutil"
   # DKMS will stop system updates from breaking VM guest extensions
   - "dkms"
+  - "libXmu"
+  - "libatomic"
