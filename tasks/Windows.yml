@@ -3,7 +3,7 @@
   chocolatey.chocolatey.win_chocolatey:
     name: autologon
     state: present
-  become: true
+    version: 3.10.0.20200924
 
 - name: Enable autologon for vagrant
   ansible.windows.win_command: >
