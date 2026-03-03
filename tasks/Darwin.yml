@@ -15,7 +15,7 @@
     - systemsetup -setdisplaysleep Never
   changed_when: false
   become: true
-  
+
 # Setup autologin using CLI tool. Not sure ansible has a module for sysadminctl
 - name: Enable autologin # noqa: no-changed-when
   ansible.builtin.command: sysadminctl -autologin set -userName "{{ ansible_env.USER }}" on
