@@ -73,4 +73,4 @@
   loop_control:
     loop_var: option
   vars:
-    ansible_python_interpreter: /usr/bin/python3.9
+    ansible_python_interpreter: "{{ ccdc_ansible_python_interpreter | default('auto') }}"
