@@ -11,7 +11,7 @@
     name: autologon
     state: present
   become: true
-  when: "'Windows Server' not in ansibile_os_name"
+  when: "'Windows Server' not in ansible_os_name"
 
 - name: Enable autologon for vagrant
   ansible.windows.win_command: >
