@@ -17,8 +17,8 @@
   become: true
 
 # Setup autologin using CLI tool. Not sure ansible has a module for sysadminctl
-- name: Enable autologin # noqa: no-changed-when
-  ansible.builtin.command: sysadminctl -autologin set -userName "{{ ansible_env.USER }}" on
+- name: Enable autologin  # noqa: no-changed-when
+  ansible.builtin.command: sysadminctl -autologin set -userName "{{ ansible_facts['env']['USER'] }}" on
   become: true
 
 - name: Set Europe/London time zone
